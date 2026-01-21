@@ -1,0 +1,33 @@
+# Scan results (generated)
+01-container-scanning/scan-results/
+02-dependency-scanning/scan-reports/
+03-sbom-generation/
+05-findings/metrics-summary.md
+
+# Docker
+.dockerignore
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.log

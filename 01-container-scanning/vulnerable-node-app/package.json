@@ -1,0 +1,12 @@
+{
+  "name": "vulnerable-node-app",
+  "version": "1.0.0",
+  "description": "Intentionally vulnerable Node.js app for SCA testing",
+  "main": "app.js",
+  "dependencies": {
+    "express": "4.17.1",
+    "lodash": "4.17.19",
+    "axios": "0.21.1",
+    "moment": "2.29.1"
+  }
+}
