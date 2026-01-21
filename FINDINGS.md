@@ -1,53 +1,117 @@
-# Container Security Analysis - Node.js 14.17.0
+# Container Security Analysis - Comprehensive Findings
 
 **Analysis Date:** January 21, 2026  
 **Tool:** Trivy v0.68.2  
-**Analyst:** Precious Robert
+**Analyst:** ASLabs (AllyShip Security Laboratories)  
+**Contact:** support@allyshipglobal.com
 
 ---
 
 ## Executive Summary
 
-I scanned the official `node:14.17.0` Docker image to understand container security risks in production environments. **The scan identified 470 vulnerabilities (30 CRITICAL, 440+ HIGH severity)** across 412 system packages.
+I performed comprehensive vulnerability scanning on both official Docker base images and custom vulnerable applications to understand real-world container security risks.
 
-**Key Finding:** The image uses Debian 9.13 (Stretch), which reached End-of-Life in June 2022. This means **none of the 470 vulnerabilities can be patched** through normal updates—the only fix is migrating to a supported base image.
+**Total Vulnerabilities Identified: 1,646 across 4 container images**
 
-**Business Impact:** Any application using this image inherits all 470 vulnerabilities. For embedded systems with long lifecycles (like material handling equipment), this demonstrates why continuous SCA scanning is critical.
+### Scan Results Overview
+
+| Image | Total Vulns | CRITICAL | HIGH | Base OS |
+|-------|-------------|----------|------|----------|
+| **vuln-node-app** | 468 | 80 | 388 | Debian 9.13 EOL |
+| **vuln-python-app** | 1,178 | 85 | 1,093 | Debian 10.10 EOL |
+| node:14.17.0 | 470 | 30 | 440 | Debian 9 EOL |
+| python:3.8.10 | 1,170 | 85 | 1,085 | Debian 10 EOL |
+
+**Key Finding:** Custom applications with vulnerable dependencies show similar vulnerability counts to base images, with 434-1,166 OS-level vulnerabilities plus 12-34 package-specific CVEs.
+
+**Business Impact:** Applications using EOL base images inherit unfixable vulnerabilities. For industrial systems with 5-10 year lifecycles, continuous SCA scanning is essential.
 
 ---
 
 ## Scan Methodology
 
+### Custom Vulnerable Applications
+
+```bash
+# 1. Built intentionally vulnerable Node.js app
+cd 01-container-scanning/vulnerable-node-app
+docker build -t vuln-node-app .
+
+# Dependencies: express 4.17.1, axios 0.21.1, lodash 4.17.19, moment 2.29.1
+# Base: node:14.17.0 (Debian 9.13)
+
+# 2. Built intentionally vulnerable Python app
+cd ../vulnerable-python-app
+docker build -t vuln-python-app .
+
+# Dependencies: Flask 2.0.1, cryptography 3.3.2, urllib3 1.26.4, setuptools 57.0.0
+# Base: python:3.8.10 (Debian 10.10)
+
+# 3. Scanned both custom apps
+trivy image --severity CRITICAL,HIGH vuln-node-app \
+  | tee scan-results/vuln-node-app-scan.txt
+
+trivy image --severity CRITICAL,HIGH vuln-python-app \
+  | tee scan-results/vuln-python-app-scan.txt
 ```
-1. Pull official image
-   docker pull node:14.17.0
 
-2. Run Trivy vulnerability scan
-   trivy image --severity CRITICAL,HIGH \
-        --format json \
-        --output scan-results.json \
-        node:14.17.0
+### Base Image Analysis
 
-3. Parse and analyze results
-   jq '.Results[].Vulnerabilities[] | select(.Severity=="CRITICAL")' \
-      scan-results.json
+```bash
+# 4. Compared with official base images
+trivy image --severity CRITICAL,HIGH node:14.17.0
+trivy image --severity CRITICAL,HIGH python:3.8.10
 
-4. Group by package and CVE
-   
-5. Investigate top findings in NIST NVD database
+# 5. Generated detailed JSON for deep analysis
+trivy image --severity CRITICAL,HIGH \
+  --format json \
+  --output scan-results/node-14-detailed.json \
+  node:14.17.0
+
+# 6. Parsed JSON to find patterns
+jq '.Results[].Vulnerabilities[] | 
+    select(.Severity=="CRITICAL") | 
+    "\(.VulnerabilityID)|\(.PkgName)|\(.Title)"' \
+   scan-results/node-14-detailed.json
 ```
 
 ---
 
 ## Vulnerability Breakdown
 
-### Total Findings
+### Custom Application Findings
 
-| Severity | Count | Percentage |
-|----------|-------|------------|
-| **CRITICAL** | **30** | **6.4%** |
-| **HIGH** | **440+** | **93.6%** |
-| **TOTAL** | **470** | **100%** |
+#### vuln-node-app (Node.js 14.17.0 + Vulnerable Packages)
+
+**Total: 468 vulnerabilities**
+- **Debian 9.13 OS**: 434 vulnerabilities (76 CRITICAL, 358 HIGH)
+- **Node.js Packages**: 34 vulnerabilities (4 CRITICAL, 30 HIGH)
+
+**Vulnerable Dependencies:**
+- `express` 4.17.1 - Web framework
+- `axios` 0.21.1 - HTTP client (known SSRF vulnerabilities)
+- `lodash` 4.17.19 - Utility library (prototype pollution)
+- `moment` 2.29.1 - Date/time library (ReDoS vulnerabilities)
+
+#### vuln-python-app (Python 3.8.10 + Vulnerable Packages)
+
+**Total: 1,178 vulnerabilities**
+- **Debian 10.10 OS**: 1,166 vulnerabilities (85 CRITICAL, 1,081 HIGH)
+- **Python Packages**: 12 vulnerabilities
+
+**Vulnerable Dependencies:**
+- `Flask` 2.0.1 - Web framework
+- `cryptography` 3.3.2 - Cryptographic library
+- `urllib3` 1.26.4 - HTTP client
+- `setuptools` 57.0.0 - Package installer
+
+### Base Image Comparison
+
+| Severity | node:14.17.0 | python:3.8.10 | vuln-node-app | vuln-python-app |
+|----------|--------------|---------------|---------------|------------------|
+| **CRITICAL** | 30 | 85 | 80 | 85 |
+| **HIGH** | 440 | 1,085 | 388 | 1,093 |
+| **TOTAL** | 470 | 1,170 | 468 | 1,178 |
 
 ### Critical Vulnerabilities by Package
 
@@ -197,4 +261,13 @@ jq -r '.Results[].Vulnerabilities[] |
 
 ---
 
-**Next Steps:** Scan python:3.8.10, compare vulnerability patterns, create upgrade migration guide.
+## Contact
+
+**ASLabs** - AllyShip Security Laboratories  
+**LinkedIn:** [Precious Robert](https://www.linkedin.com/in/precious-robert/)  
+**Email:** support@allyshipglobal.com  
+**GitHub:** https://github.com/robertpreshyl/opensource-sca-security-lab
+
+---
+
+**Next Steps:** Create visual workflow diagram, generate SBOMs in CycloneDX format, automate scanning pipeline.

@@ -1,4 +1,10 @@
-# Open-Source SCA Security Lab
+<div align="center">
+
+![ASLabs Logo](ASLabs_Logo.png)
+
+# ASLabs - Open-Source SCA Security Lab
+
+</div>
 
 **What is this?** I built a Software Composition Analysis (SCA) lab using Trivy to learn how to find vulnerabilities in Docker containers. This project closes my knowledge gap with commercial tools like BlackDuck.
 
@@ -9,12 +15,14 @@
 ## Quick Results
 
 ```
-┌─────────────────┬────────────┬──────────┬───────┬──────────────┐
-│ Image           │ Total Vul  │ CRITICAL │ HIGH  │ Base OS      │
-├─────────────────┼────────────┼──────────┼───────┼──────────────┤
-│ node:14.17.0    │ 470        │ 30       │ 440   │ Debian 9 EOL │
-│ python:3.8.10   │ 1,170      │ 85       │ 1,085 │ Debian 10 EOL│
-└─────────────────┴────────────┴──────────┴───────┴──────────────┘
+┌──────────────────┬────────────┬──────────┬───────┬──────────────┐
+│ Image            │ Total Vul  │ CRITICAL │ HIGH  │ Base OS      │
+├──────────────────┼────────────┼──────────┼───────┼──────────────┤
+│ vuln-node-app    │ 468        │ 80       │ 388   │ Debian 9 EOL │
+│ vuln-python-app  │ 1,178      │ 85       │ 1,093 │ Debian 10 EOL│
+│ node:14.17.0     │ 470        │ 30       │ 440   │ Debian 9 EOL │
+│ python:3.8.10    │ 1,170      │ 85       │ 1,085 │ Debian 10 EOL│
+└──────────────────┴────────────┴──────────┴───────┴──────────────┘
 ```
 
 **Why this matters:** If you deploy containers with these images, you inherit all these vulnerabilities. Industrial equipment with long lifecycles (5-10 years) needs continuous scanning to catch these risks.
@@ -192,6 +200,13 @@ opensource-sca-security-lab/
 
 ---
 
-**Status:** Active learning project - real scans completed, documentation in progress
+## Contact
 
+**ASLabs** - AllyShip Security Laboratories  
+**LinkedIn:** [Precious Robert](https://www.linkedin.com/in/precious-robert/)  
+**Email:** support@allyshipglobal.com  
 **GitHub:** https://github.com/robertpreshyl/opensource-sca-security-lab
+
+---
+
+**Status:** Active learning project - real scans completed, documentation in progress

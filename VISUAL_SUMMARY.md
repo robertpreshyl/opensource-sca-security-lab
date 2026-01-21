@@ -1,4 +1,9 @@
-# SCA Vulnerability Analysis - Visual Summary
+# ASLabs - SCA Vulnerability Analysis - Visual Summary
+
+**Analyst:** ASLabs (AllyShip Security Laboratories)  
+**Analysis Date:** January 21, 2026
+
+---
 
 ## Node.js 14.17.0 Critical Vulnerability Distribution
 
@@ -140,3 +145,21 @@ Solution: Continuous SCA scanning + upgrade path planning
 **Data Source:** Trivy scan of node:14.17.0, parsed from 3.8 MB JSON output  
 **Analysis Date:** January 21, 2026  
 **Tool:** Trivy v0.68.2 + jq for JSON parsing
+
+---
+
+## Contact
+
+**ASLabs** - AllyShip Security Laboratories  
+**LinkedIn:** [Precious Robert](https://www.linkedin.com/in/precious-robert/)  
+**Email:** support@allyshipglobal.com  
+**GitHub:** https://github.com/robertpreshyl/opensource-sca-security-lab
+
+---
+
+## Contact
+
+**ASLabs** - AllyShip Security Laboratories  
+**LinkedIn:** [Precious Robert](https://www.linkedin.com/in/precious-robert/)  
+**Email:** support@allyshipglobal.com  
+**GitHub:** https://github.com/robertpreshyl/opensource-sca-security-lab
