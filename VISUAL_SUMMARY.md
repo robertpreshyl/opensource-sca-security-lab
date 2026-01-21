@@ -154,12 +154,3 @@ Solution: Continuous SCA scanning + upgrade path planning
 **LinkedIn:** [Precious Robert](https://www.linkedin.com/in/precious-robert/)  
 **Email:** support@allyshipglobal.com  
 **GitHub:** https://github.com/robertpreshyl/opensource-sca-security-lab
-
----
-
-## Contact
-
-**ASLabs** - AllyShip Security Laboratories  
-**LinkedIn:** [Precious Robert](https://www.linkedin.com/in/precious-robert/)  
-**Email:** support@allyshipglobal.com  
-**GitHub:** https://github.com/robertpreshyl/opensource-sca-security-lab

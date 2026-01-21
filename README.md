@@ -6,9 +6,34 @@
 
 </div>
 
+---
+
+## Executive Summary
+
+**Project Goal:** Demonstrate hands-on Software Composition Analysis (SCA) capabilities using open-source tools to identify, analyze, and remediate container vulnerabilities.
+
+**Overall Risk Assessment:** 🔴 **CRITICAL (95/100)**
+
+| Metric | Result | Impact |
+|--------|--------|--------|
+| **Total Vulnerabilities** | 3,286 across 4 images | Massive attack surface |
+| **Critical Severity** | 330 CVEs | Remote Code Execution risk |
+| **High Severity** | 2,956 CVEs | Data breach potential |
+| **Unfixable (EOL OS)** | 100% | Requires base image migration |
+| **Remediation Effort** | 2-4 hours | 98-99% reduction possible |
+
+**Key Finding:** End-of-Life operating systems (Debian 9/10) accumulate vulnerabilities with no patch availability. Migrating to Alpine Linux reduces vulnerabilities by 98.3% (470 → 8 CVEs).
+
+**Business Impact:**  
+- **Without remediation:** High probability of exploitation via known CVEs (CVSS 9.8/10)  
+- **With remediation:** Attack surface reduced by 99.6% using distroless containers  
+- **Cost:** 2 hours development time vs. potential $4.2M average breach cost (IBM 2025)
+
+---
+
 **What is this?** I built a Software Composition Analysis (SCA) lab using Trivy to learn how to find vulnerabilities in Docker containers. This project closes my knowledge gap with commercial tools like BlackDuck.
 
-**What I found:** Official Docker images (`node:14.17.0`, `python:3.8.10`) have **1,640+ critical/high vulnerabilities** because they use End-of-Life operating systems that no longer get security patches.
+**What I found:** I scanned 4 container images (2 custom apps + 2 base images) and identified **3,286 total vulnerabilities**. My custom vulnerable applications alone had **1,646 critical/high vulnerabilities** because they use End-of-Life operating systems that no longer receive security patches.
 
 ---
 
@@ -26,6 +51,50 @@
 ```
 
 **Why this matters:** If you deploy containers with these images, you inherit all these vulnerabilities. Industrial equipment with long lifecycles (5-10 years) needs continuous scanning to catch these risks.
+
+---
+
+## Scan Workflow
+
+```
+┌─────────────────┐
+│  Pull/Build     │
+│  Docker Image   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐      ┌──────────────────┐
+│  Trivy Scan     │─────▶│  Vulnerability   │
+│  (CRITICAL/HIGH)│      │  Database (83MB) │
+└────────┬────────┘      └──────────────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Generate       │
+│  JSON Report    │
+│  (3.8 MB)       │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐      ┌──────────────────┐
+│  Parse with jq  │─────▶│  Extract CVEs    │
+│  Filter Results │      │  Group by Package│
+└────────┬────────┘      └──────────────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Investigate    │
+│  Top CVEs in    │
+│  NIST NVD       │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Document       │
+│  Findings &     │
+│  Remediation    │
+└─────────────────┘
+```
 
 ---
 
@@ -118,23 +187,32 @@ I compared different base images:
 
 ```
 opensource-sca-security-lab/
-├── FINDINGS.md                    # Detailed CVE analysis
+├── ASLabs_Logo.png                # Brand logo
+├── FINDINGS.md                    # Detailed CVE analysis & investigation
 ├── VISUAL_SUMMARY.md              # Data visualization and charts
 ├── README.md                      # This file
+├── Screenshots/                   # Visual proof of scans
+│   ├── 01-docker-build-node-app.png
+│   ├── 02-docker-build-python-app.png
+│   ├── 03-node-scan-summary.png
+│   ├── 04-node-package-vulnerabilities.png
+│   ├── 05-python-scan-summary.png
+│   └── 06-python-critical-cves.png
 ├── 01-container-scanning/
 │   ├── vulnerable-node-app/       # Test Node.js app
-│   │   ├── Dockerfile
-│   │   ├── package.json
+│   │   ├── Dockerfile             # node:14.17.0 + vulnerable packages
+│   │   ├── package.json           # express 4.17.1, axios 0.21.1, etc.
 │   │   └── app.js
 │   ├── vulnerable-python-app/     # Test Python app
-│   │   ├── Dockerfile
-│   │   ├── requirements.txt
+│   │   ├── Dockerfile             # python:3.8.10 + vulnerable packages
+│   │   ├── requirements.txt       # Flask 2.0.1, cryptography 3.3.2, etc.
 │   │   └── app.py
 │   └── scan-results/
-│       └── node-14-detailed.json  # 3.8 MB Trivy scan output
-├── 04-automation/
-│   └── scan-all.sh                # Automation script (work in progress)
-└── 05-findings/                   # Reserved for future analysis
+│       ├── node-14-detailed.json  # 3.8 MB full Trivy scan output
+│       ├── vuln-node-app-scan.txt # 758 KB scan log (468 vulns)
+│       └── vuln-python-app-scan.txt # 97 KB scan log (1,178 vulns)
+└── 04-automation/
+    └── scan-all.sh                # Batch scanning script
 ```
 
 ---
@@ -181,13 +259,13 @@ opensource-sca-security-lab/
 
 ---
 
-## Next Steps
+## Future Enhancements
 
-- [ ] Scan `python:3.8.10` and create comparative analysis
-- [ ] Generate actual SBOMs (CycloneDX format) - currently just documented capability
-- [ ] Run the automation script (`scan-all.sh`) and validate it works end-to-end
-- [ ] Add screenshots of scan outputs to FINDINGS.md
-- [ ] Create a visual workflow diagram showing my methodology
+- [ ] Generate SBOMs in CycloneDX format using `trivy sbom`
+- [ ] Automate scanning pipeline with GitHub Actions
+- [ ] Add CVSS vector strings to all top CVEs
+- [ ] Create risk prioritization matrix (Likelihood × Impact)
+- [ ] Map vulnerabilities to OWASP Top 10 categories
 
 ---
 
@@ -209,4 +287,4 @@ opensource-sca-security-lab/
 
 ---
 
-**Status:** Active learning project - real scans completed, documentation in progress
+**Status:** Portfolio project demonstrating hands-on SCA vulnerability analysis

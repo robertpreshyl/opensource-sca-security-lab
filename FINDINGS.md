@@ -173,7 +173,7 @@ I investigated these CVEs in detail using the NIST National Vulnerability Databa
 
 ### About libwebp Vulnerabilities
 
-40 out of 30 CRITICAL CVEs affect the WebP image library (libwebp6, libwebpmux2, libwebpdemux2, libwebp-dev). I researched why:
+Multiple CRITICAL CVEs affect the WebP image library packages (libwebp6, libwebpmux2, libwebpdemux2, libwebp-dev). I researched why this matters:
 
 - **WebP** is Google's image format (Chrome, Android use it heavily)
 - These packages process **untrusted image files** from the web
