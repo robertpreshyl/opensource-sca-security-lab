@@ -36,23 +36,43 @@ I created intentionally vulnerable Docker containers to understand dependency ri
 # Build Node.js app with old packages
 cd 01-container-scanning/vulnerable-node-app
 docker build -t vuln-node-app .
+```
 
+![Building Node.js App](Screenshots/01-docker-build-node-app.png)
+
+```bash
 # Build Python app with old packages
 cd ../vulnerable-python-app
 docker build -t vuln-python-app .
+```
 
+![Building Python App](Screenshots/02-docker-build-python-app.png)
+
+```bash
 # Scan both apps
 trivy image --severity CRITICAL,HIGH vuln-node-app
 trivy image --severity CRITICAL,HIGH vuln-python-app
 ```
 
-**Results:**
-- **vuln-node-app**: 468 vulnerabilities (80 CRITICAL, 388 HIGH)
+**Node.js App Scan Results:**
+
+![Node.js Scan Summary](Screenshots/03-node-scan-summary.png)
+
+- **Total**: 468 vulnerabilities (80 CRITICAL, 388 HIGH)
   - Debian 9.13 OS: 434 vulnerabilities
   - Node.js packages: 34 vulnerabilities (express, axios, lodash, moment)
-- **vuln-python-app**: 1,178 vulnerabilities (85 CRITICAL, 1,093 HIGH)
+
+![Node.js Package Vulnerabilities](Screenshots/04-node-package-vulnerabilities.png)
+
+**Python App Scan Results:**
+
+![Python Scan Summary](Screenshots/05-python-scan-summary.png)
+
+- **Total**: 1,178 vulnerabilities (85 CRITICAL, 1,093 HIGH)
   - Debian 10 OS: 1,166 vulnerabilities
   - Python packages: 12 vulnerabilities (Flask, cryptography, urllib3, setuptools)
+
+![Python Critical CVEs](Screenshots/06-python-critical-cves.png)
 
 ### 3. Analyzed the Base Images
 
