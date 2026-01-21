@@ -133,7 +133,7 @@ Pin dependencies            1 hr    Free    20-30% ↓
 Solution: Continuous SCA scanning + upgrade path planning
 ```
 
-**For Konecranes:** Material handling equipment has 10-15 year lifecycles. This demonstrates why embedded Linux systems need continuous vulnerability monitoring and remediation planning from day one.
+**Industry Context:** Industrial equipment with 10-15 year lifecycles demonstrates why embedded Linux systems need continuous vulnerability monitoring and remediation planning from day one.
 
 ---
 

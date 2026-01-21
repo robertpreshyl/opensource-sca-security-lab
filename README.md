@@ -17,7 +17,7 @@
 └─────────────────┴────────────┴──────────┴───────┴──────────────┘
 ```
 
-**Why this matters:** If you deploy containers with these images, you inherit all these vulnerabilities. For industrial equipment with long lifecycles (5-10 years), this shows why continuous scanning is critical.
+**Why this matters:** If you deploy containers with these images, you inherit all these vulnerabilities. Industrial equipment with long lifecycles (5-10 years) needs continuous scanning to catch these risks.
 
 ---
 
@@ -28,16 +28,41 @@
 brew install trivy
 ```
 
-### 2. Scanned Real Docker Images
-```bash
-# Node.js 14
-trivy image --severity CRITICAL,HIGH node:14.17.0
+### 2. Built and Scanned Custom Vulnerable Apps
 
-# Python 3.8
-trivy image --severity CRITICAL,HIGH python:3.8.10
+I created intentionally vulnerable Docker containers to understand dependency risks:
+
+```bash
+# Build Node.js app with old packages
+cd 01-container-scanning/vulnerable-node-app
+docker build -t vuln-node-app .
+
+# Build Python app with old packages
+cd ../vulnerable-python-app
+docker build -t vuln-python-app .
+
+# Scan both apps
+trivy image --severity CRITICAL,HIGH vuln-node-app
+trivy image --severity CRITICAL,HIGH vuln-python-app
 ```
 
-### 3. Analyzed the Results
+**Results:**
+- **vuln-node-app**: 468 vulnerabilities (80 CRITICAL, 388 HIGH)
+  - Debian 9.13 OS: 434 vulnerabilities
+  - Node.js packages: 34 vulnerabilities (express, axios, lodash, moment)
+- **vuln-python-app**: 1,178 vulnerabilities (85 CRITICAL, 1,093 HIGH)
+  - Debian 10 OS: 1,166 vulnerabilities
+  - Python packages: 12 vulnerabilities (Flask, cryptography, urllib3, setuptools)
+
+### 3. Analyzed the Base Images
+
+I also scanned the official base images to compare:
+
+```bash
+# Scan official images
+trivy image --severity CRITICAL,HIGH node:14.17.0
+trivy image --severity CRITICAL,HIGH python:3.8.10
+```
 
 I parsed the 3.8 MB JSON output to find patterns:
 - **30 CRITICAL CVEs** in node:14.17.0

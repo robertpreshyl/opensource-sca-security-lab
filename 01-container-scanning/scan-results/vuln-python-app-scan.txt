@@ -1,0 +1,387 @@
+2026-01-21T18:48:12+01:00	INFO	[vuln] Vulnerability scanning is enabled
+2026-01-21T18:48:12+01:00	INFO	[secret] Secret scanning is enabled
+2026-01-21T18:48:12+01:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-01-21T18:48:12+01:00	INFO	[secret] Please see https://trivy.dev/docs/v0.68/guide/scanner/secret#recommendation for faster secret detection
+2026-01-21T18:48:16+01:00	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+2026-01-21T18:48:19+01:00	INFO	Detected OS	family="debian" version="10.10"
+2026-01-21T18:48:19+01:00	INFO	[debian] Detecting vulnerabilities...	os_version="10" pkg_num=428
+2026-01-21T18:48:19+01:00	INFO	Number of language-specific files	num=1
+2026-01-21T18:48:19+01:00	INFO	[python-pkg] Detecting vulnerabilities...
+2026-01-21T18:48:19+01:00	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.68/guide/scanner/vulnerability#severity-selection for details.
+2026-01-21T18:48:19+01:00	WARN	This OS version is no longer supported by the distribution	family="debian" version="10.10"
+2026-01-21T18:48:19+01:00	WARN	The vulnerability detection may be insufficient because security updates are not provided
+2026-01-21T18:48:20+01:00	INFO	Table result includes only package filenames. Use '--format json' option to get the full path to the package file.
+
+Report Summary
+
+┌─────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┬─────────┐
+│                                   Target                                    │    Type    │ Vulnerabilities │ Secrets │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ vuln-python-app (debian 10.10)                                              │   debian   │      1166       │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/Flask-2.0.1.dist-info/METADATA        │ python-pkg │        1        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/Jinja2-3.0.1.dist-info/METADATA       │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/MarkupSafe-2.1.5.dist-info/METADATA   │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/certifi-2026.1.4.dist-info/METADATA   │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/cffi-1.17.1.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/chardet-3.0.4.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/click-8.1.8.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/cryptography-3.3.2.dist-info/METADATA │ python-pkg │        2        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/idna-2.10.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/itsdangerous-2.2.0.dist-info/METADATA │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/pip-21.1.3.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/pycparser-2.23.dist-info/METADATA     │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/requests-2.25.0.dist-info/METADATA    │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/setuptools-57.0.0.dist-info/METADATA  │ python-pkg │        3        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/six-1.17.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/urllib3-1.26.4.dist-info/METADATA     │ python-pkg │        5        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/werkzeug-3.0.6.dist-info/METADATA     │ python-pkg │        0        │    -    │
+├─────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.8/site-packages/wheel-0.36.2.dist-info/METADATA       │ python-pkg │        1        │    -    │
+└─────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+vuln-python-app (debian 10.10)
+==============================
+Total: 1166 (HIGH: 1081, CRITICAL: 85)
+
+┌─────────────────────────────┬────────────────┬──────────┬──────────────┬──────────────────────────────┬──────────────────────────────┬──────────────────────────────────────────────────────────────┐
+│           Library           │ Vulnerability  │ Severity │    Status    │      Installed Version       │        Fixed Version         │                            Title                             │
+├─────────────────────────────┼────────────────┼──────────┼──────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ comerr-dev                  │ CVE-2022-1304  │ HIGH     │ affected     │ 2.1-1.44.5-1+deb10u3         │                              │ e2fsprogs: out-of-bounds read/write via crafted filesystem   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-1304                    │
+├─────────────────────────────┼────────────────┤          ├──────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ cpp-8                       │ CVE-2018-12886 │          │ will_not_fix │ 8.3.0-6                      │                              │ gcc: spilling of stack protection address in cfgexpand.c and │
+│                             │                │          │              │                              │                              │ function.c leads to...                                       │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2018-12886                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2019-15847 │          │              │                              │                              │ gcc: POWER9 "DARN" RNG intrinsic produces repeated output    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2019-15847                   │
+├─────────────────────────────┼────────────────┼──────────┼──────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ curl                        │ CVE-2022-32221 │ CRITICAL │ fixed        │ 7.64.0-4+deb10u2             │ 7.64.0-4+deb10u4             │ curl: POST following PUT confusion                           │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-32221                   │
+│                             ├────────────────┼──────────┤              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-22946 │ HIGH     │              │                              │ 7.64.0-4+deb10u3             │ curl: Requirement to use TLS not properly enforced for IMAP, │
+│                             │                │          │              │                              │                              │ POP3, and...                                                 │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-22946                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-22576 │          │              │                              │                              │ curl: OAUTH2 bearer bypass in connection re-use              │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-22576                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-27781 │          │              │                              │                              │ curl: CERTINFO never-ending busy-loop                        │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-27781                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-27782 │          │              │                              │                              │ curl: TLS and SSH connection too eager reuse                 │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-27782                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2023-27533 │          │              │                              │ 7.64.0-4+deb10u6             │ curl: TELNET option IAC injection                            │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2023-27533                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2023-27534 │          │              │                              │ 7.64.0-4+deb10u9             │ curl: SFTP path ~ resolving discrepancy                      │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2023-27534                   │
+│                             ├────────────────┤          ├──────────────┤                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2024-2398  │          │ fix_deferred │                              │                              │ curl: HTTP/2 push headers memory-leak                        │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2024-2398                    │
+├─────────────────────────────┼────────────────┼──────────┼──────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ dpkg                        │ CVE-2022-1664  │ CRITICAL │ fixed        │ 1.19.7                       │ 1.19.8                       │ Dpkg::Source::Archive in dpkg, the Debian package management │
+│                             │                │          │              │                              │                              │ system, b ...                                                │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-1664                    │
+├─────────────────────────────┤                │          │              │                              │                              │                                                              │
+│ dpkg-dev                    │                │          │              │                              │                              │                                                              │
+│                             │                │          │              │                              │                              │                                                              │
+│                             │                │          │              │                              │                              │                                                              │
+├─────────────────────────────┼────────────────┼──────────┼──────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ e2fsprogs                   │ CVE-2022-1304  │ HIGH     │ affected     │ 1.44.5-1+deb10u3             │                              │ e2fsprogs: out-of-bounds read/write via crafted filesystem   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-1304                    │
+├─────────────────────────────┼────────────────┤          ├──────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ g++-8                       │ CVE-2018-12886 │          │ will_not_fix │ 8.3.0-6                      │                              │ gcc: spilling of stack protection address in cfgexpand.c and │
+│                             │                │          │              │                              │                              │ function.c leads to...                                       │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2018-12886                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2019-15847 │          │              │                              │                              │ gcc: POWER9 "DARN" RNG intrinsic produces repeated output    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2019-15847                   │
+├─────────────────────────────┼────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ gcc-8                       │ CVE-2018-12886 │          │              │                              │                              │ gcc: spilling of stack protection address in cfgexpand.c and │
+│                             │                │          │              │                              │                              │ function.c leads to...                                       │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2018-12886                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2019-15847 │          │              │                              │                              │ gcc: POWER9 "DARN" RNG intrinsic produces repeated output    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2019-15847                   │
+├─────────────────────────────┼────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ gcc-8-base                  │ CVE-2018-12886 │          │              │                              │                              │ gcc: spilling of stack protection address in cfgexpand.c and │
+│                             │                │          │              │                              │                              │ function.c leads to...                                       │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2018-12886                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2019-15847 │          │              │                              │                              │ gcc: POWER9 "DARN" RNG intrinsic produces repeated output    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2019-15847                   │
+├─────────────────────────────┼────────────────┤          ├──────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ gir1.2-gdkpixbuf-2.0        │ CVE-2022-48622 │          │ fix_deferred │ 2.38.1+dfsg-1                │                              │ gnome: heap memory corruption on gdk-pixbuf                  │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-48622                   │
+├─────────────────────────────┼────────────────┼──────────┼──────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ git                         │ CVE-2022-23521 │ CRITICAL │ fixed        │ 1:2.20.1-2+deb10u3           │ 1:2.20.1-2+deb10u7           │ git: gitattributes parsing integer overflow                  │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-23521                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-41903 │          │              │                              │                              │ git: Heap overflow in `git archive`, `git log --format`      │
+│                             │                │          │              │                              │                              │ leading to RCE...                                            │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-41903                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2024-32002 │          │              │                              │ 1:2.20.1-2+deb10u9           │ git: Recursive clones RCE                                    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2024-32002                   │
+│                             ├────────────────┼──────────┤              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2019-1387  │ HIGH     │              │                              │                              │ git: Remote code execution in recursive clones with nested   │
+│                             │                │          │              │                              │                              │ submodules                                                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2019-1387                    │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-21300 │          │              │                              │ 1:2.20.1-2+deb10u4           │ git: remote code execution during clone operation on         │
+│                             │                │          │              │                              │                              │ case-insensitive filesystems                                 │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-21300                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-40330 │          │              │                              │                              │ git: unexpected cross-protocol requests via a repository     │
+│                             │                │          │              │                              │                              │ path containing a newline character...                       │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-40330                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-24765 │          │              │                              │ 1:2.20.1-2+deb10u5           │ git: On multi-user machines Git users might find themselves  │
+│                             │                │          │              │                              │                              │ unexpectedly in a...                                         │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-24765                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-29187 │          │              │                              │                              │ git: Bypass of safe.directory protections                    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-29187                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-39260 │          │              │                              │                              │ git: git shell function that splits command arguments can    │
+│                             │                │          │              │                              │                              │ lead to arbitrary...                                         │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-39260                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2023-23946 │          │              │                              │ 1:2.20.1-2+deb10u8           │ git: git apply: a path outside the working tree can be       │
+│                             │                │          │              │                              │                              │ overwritten...                                               │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2023-23946                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2023-25652 │          │              │                              │ 1:2.20.1-2+deb10u9           │ git: by feeding specially crafted input to `git apply        │
+│                             │                │          │              │                              │                              │ --reject`, a path...                                         │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2023-25652                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2023-29007 │          │              │                              │                              │ git: arbitrary configuration injection when renaming or      │
+│                             │                │          │              │                              │                              │ deleting a section from a...                                 │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2023-29007                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2024-32004 │          │              │                              │                              │ git: RCE while cloning local repos                           │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2024-32004                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2024-32021 │          │              │                              │                              │ git: symlink bypass                                          │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2024-32021                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2024-32465 │          │              │                              │                              │ git: additional local RCE                                    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2024-32465                   │
+├─────────────────────────────┼────────────────┼──────────┤              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ git-man                     │ CVE-2022-23521 │ CRITICAL │              │                              │ 1:2.20.1-2+deb10u7           │ git: gitattributes parsing integer overflow                  │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-23521                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-41903 │          │              │                              │                              │ git: Heap overflow in `git archive`, `git log --format`      │
+│                             │                │          │              │                              │                              │ leading to RCE...                                            │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-41903                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2024-32002 │          │              │                              │ 1:2.20.1-2+deb10u9           │ git: Recursive clones RCE                                    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2024-32002                   │
+│                             ├────────────────┼──────────┤              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2019-1387  │ HIGH     │              │                              │                              │ git: Remote code execution in recursive clones with nested   │
+│                             │                │          │              │                              │                              │ submodules                                                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2019-1387                    │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-21300 │          │              │                              │ 1:2.20.1-2+deb10u4           │ git: remote code execution during clone operation on         │
+│                             │                │          │              │                              │                              │ case-insensitive filesystems                                 │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-21300                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-40330 │          │              │                              │                              │ git: unexpected cross-protocol requests via a repository     │
+│                             │                │          │              │                              │                              │ path containing a newline character...                       │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-40330                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-24765 │          │              │                              │ 1:2.20.1-2+deb10u5           │ git: On multi-user machines Git users might find themselves  │
+│                             │                │          │              │                              │                              │ unexpectedly in a...                                         │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-24765                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-29187 │          │              │                              │                              │ git: Bypass of safe.directory protections                    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-29187                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-39260 │          │              │                              │                              │ git: git shell function that splits command arguments can    │
+│                             │                │          │              │                              │                              │ lead to arbitrary...                                         │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-39260                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2023-23946 │          │              │                              │ 1:2.20.1-2+deb10u8           │ git: git apply: a path outside the working tree can be       │
+│                             │                │          │              │                              │                              │ overwritten...                                               │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2023-23946                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2023-25652 │          │              │                              │ 1:2.20.1-2+deb10u9           │ git: by feeding specially crafted input to `git apply        │
+│                             │                │          │              │                              │                              │ --reject`, a path...                                         │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2023-25652                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2023-29007 │          │              │                              │                              │ git: arbitrary configuration injection when renaming or      │
+│                             │                │          │              │                              │                              │ deleting a section from a...                                 │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2023-29007                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2024-32004 │          │              │                              │                              │ git: RCE while cloning local repos                           │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2024-32004                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2024-32021 │          │              │                              │                              │ git: symlink bypass                                          │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2024-32021                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2024-32465 │          │              │                              │                              │ git: additional local RCE                                    │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2024-32465                   │
+├─────────────────────────────┼────────────────┤          │              ├──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ gzip                        │ CVE-2022-1271  │          │              │ 1.9-3                        │ 1.9-3+deb10u1                │ gzip: arbitrary-file-write vulnerability                     │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-1271                    │
+├─────────────────────────────┼────────────────┤          │              ├──────────────────────────────┼──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ imagemagick                 │ CVE-2020-19667 │          │              │ 8:6.9.10.23+dfsg-2.1+deb10u1 │ 8:6.9.10.23+dfsg-2.1+deb10u2 │ ImageMagick: Stack buffer overflow in XPM coder could result │
+│                             │                │          │              │                              │                              │ in a crash...                                                │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-19667                   │
+│                             ├────────────────┤          ├──────────────┤                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2020-27752 │          │ will_not_fix │                              │                              │ ImageMagick: heap-based buffer overflow in PopShortPixel in  │
+│                             │                │          │              │                              │                              │ MagickCore/quantum-private.h                                 │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-27752                   │
+│                             ├────────────────┤          ├──────────────┤                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2020-27766 │          │ fixed        │                              │ 8:6.9.10.23+dfsg-2.1+deb10u2 │ ImageMagick: outside the range of representable values of    │
+│                             │                │          │              │                              │                              │ type 'unsigned long' at...                                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-27766                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2020-29599 │          │              │                              │                              │ ImageMagick: Shell injection via PDF password could result   │
+│                             │                │          │              │                              │                              │ in arbitrary code execution...                               │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-29599                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-20309 │          │              │                              │ 8:6.9.10.23+dfsg-2.1+deb10u5 │ ImagemMagick: Division by zero in WaveImage() of             │
+│                             │                │          │              │                              │                              │ MagickCore/visual-effects.c                                  │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-20309                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-20312 │          │              │                              │                              │ ImageMagick: Integer overflow in WriteTHUMBNAILImage of      │
+│                             │                │          │              │                              │                              │ coders/thumbnail.c                                           │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-20312                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-20313 │          │              │                              │                              │ ImageMagick: Cipher leak when the calculating signatures in  │
+│                             │                │          │              │                              │                              │ TransformSignatureof MagickCore/signature.c                  │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-20313                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-40211 │          │              │                              │                              │ ImageMagick: Division by zero in ReadEnhMetaFile lead to DoS │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-40211                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-28463 │          │              │                              │                              │ ImageMagick: heap-buffer-overflow in PushLongPixel() of      │
+│                             │                │          │              │                              │                              │ quantum-private.h                                            │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-28463                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-32545 │          │              │                              │                              │ ImageMagick: outside the range of representable values of    │
+│                             │                │          │              │                              │                              │ type 'unsigned char' at...                                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-32545                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-32546 │          │              │                              │                              │ ImageMagick: outside the range of representable values of    │
+│                             │                │          │              │                              │                              │ type 'unsigned long' at...                                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-32546                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-32547 │          │              │                              │                              │ ImageMagick: load of misaligned address at                   │
+│                             │                │          │              │                              │                              │ MagickCore/property.c                                        │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-32547                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-48541 │          │              │                              │ 8:6.9.10.23+dfsg-2.1+deb10u7 │ ImageMagick: memory leak in identify -help                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-48541                   │
+├─────────────────────────────┼────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ imagemagick-6-common        │ CVE-2020-19667 │          │              │                              │ 8:6.9.10.23+dfsg-2.1+deb10u2 │ ImageMagick: Stack buffer overflow in XPM coder could result │
+│                             │                │          │              │                              │                              │ in a crash...                                                │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-19667                   │
+│                             ├────────────────┤          ├──────────────┤                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2020-27752 │          │ will_not_fix │                              │                              │ ImageMagick: heap-based buffer overflow in PopShortPixel in  │
+│                             │                │          │              │                              │                              │ MagickCore/quantum-private.h                                 │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-27752                   │
+│                             ├────────────────┤          ├──────────────┤                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2020-27766 │          │ fixed        │                              │ 8:6.9.10.23+dfsg-2.1+deb10u2 │ ImageMagick: outside the range of representable values of    │
+│                             │                │          │              │                              │                              │ type 'unsigned long' at...                                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-27766                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2020-29599 │          │              │                              │                              │ ImageMagick: Shell injection via PDF password could result   │
+│                             │                │          │              │                              │                              │ in arbitrary code execution...                               │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-29599                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-20309 │          │              │                              │ 8:6.9.10.23+dfsg-2.1+deb10u5 │ ImagemMagick: Division by zero in WaveImage() of             │
+│                             │                │          │              │                              │                              │ MagickCore/visual-effects.c                                  │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-20309                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-20312 │          │              │                              │                              │ ImageMagick: Integer overflow in WriteTHUMBNAILImage of      │
+│                             │                │          │              │                              │                              │ coders/thumbnail.c                                           │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-20312                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-20313 │          │              │                              │                              │ ImageMagick: Cipher leak when the calculating signatures in  │
+│                             │                │          │              │                              │                              │ TransformSignatureof MagickCore/signature.c                  │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-20313                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-40211 │          │              │                              │                              │ ImageMagick: Division by zero in ReadEnhMetaFile lead to DoS │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-40211                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-28463 │          │              │                              │                              │ ImageMagick: heap-buffer-overflow in PushLongPixel() of      │
+│                             │                │          │              │                              │                              │ quantum-private.h                                            │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-28463                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-32545 │          │              │                              │                              │ ImageMagick: outside the range of representable values of    │
+│                             │                │          │              │                              │                              │ type 'unsigned char' at...                                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-32545                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-32546 │          │              │                              │                              │ ImageMagick: outside the range of representable values of    │
+│                             │                │          │              │                              │                              │ type 'unsigned long' at...                                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-32546                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-32547 │          │              │                              │                              │ ImageMagick: load of misaligned address at                   │
+│                             │                │          │              │                              │                              │ MagickCore/property.c                                        │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-32547                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-48541 │          │              │                              │ 8:6.9.10.23+dfsg-2.1+deb10u7 │ ImageMagick: memory leak in identify -help                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-48541                   │
+├─────────────────────────────┼────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ imagemagick-6.q16           │ CVE-2020-19667 │          │              │                              │ 8:6.9.10.23+dfsg-2.1+deb10u2 │ ImageMagick: Stack buffer overflow in XPM coder could result │
+│                             │                │          │              │                              │                              │ in a crash...                                                │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-19667                   │
+│                             ├────────────────┤          ├──────────────┤                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2020-27752 │          │ will_not_fix │                              │                              │ ImageMagick: heap-based buffer overflow in PopShortPixel in  │
+│                             │                │          │              │                              │                              │ MagickCore/quantum-private.h                                 │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-27752                   │
+│                             ├────────────────┤          ├──────────────┤                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2020-27766 │          │ fixed        │                              │ 8:6.9.10.23+dfsg-2.1+deb10u2 │ ImageMagick: outside the range of representable values of    │
+│                             │                │          │              │                              │                              │ type 'unsigned long' at...                                   │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-27766                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2020-29599 │          │              │                              │                              │ ImageMagick: Shell injection via PDF password could result   │
+│                             │                │          │              │                              │                              │ in arbitrary code execution...                               │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2020-29599                   │
+│                             ├────────────────┤          │              │                              ├──────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-20309 │          │              │                              │ 8:6.9.10.23+dfsg-2.1+deb10u5 │ ImagemMagick: Division by zero in WaveImage() of             │
+│                             │                │          │              │                              │                              │ MagickCore/visual-effects.c                                  │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-20309                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-20312 │          │              │                              │                              │ ImageMagick: Integer overflow in WriteTHUMBNAILImage of      │
+│                             │                │          │              │                              │                              │ coders/thumbnail.c                                           │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-20312                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-20313 │          │              │                              │                              │ ImageMagick: Cipher leak when the calculating signatures in  │
+│                             │                │          │              │                              │                              │ TransformSignatureof MagickCore/signature.c                  │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-20313                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2021-40211 │          │              │                              │                              │ ImageMagick: Division by zero in ReadEnhMetaFile lead to DoS │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2021-40211                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-28463 │          │              │                              │                              │ ImageMagick: heap-buffer-overflow in PushLongPixel() of      │
+│                             │                │          │              │                              │                              │ quantum-private.h                                            │
+│                             │                │          │              │                              │                              │ https://avd.aquasec.com/nvd/cve-2022-28463                   │
+│                             ├────────────────┤          │              │                              │                              ├──────────────────────────────────────────────────────────────┤
+│                             │ CVE-2022-32545 │          │              │                              │                              │ ImageMagick: outside the range of representable values of    │
+│                             │                │          │ 
