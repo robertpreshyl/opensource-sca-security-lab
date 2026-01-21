@@ -65,17 +65,23 @@ I compared different base images:
 
 ```
 opensource-sca-security-lab/
-├── FINDINGS.md                    # My actual analysis of CVEs
+├── FINDINGS.md                    # Detailed CVE analysis
+├── VISUAL_SUMMARY.md              # Data visualization and charts
 ├── README.md                      # This file
 ├── 01-container-scanning/
 │   ├── vulnerable-node-app/       # Test Node.js app
+│   │   ├── Dockerfile
+│   │   ├── package.json
+│   │   └── app.js
+│   ├── vulnerable-python-app/     # Test Python app
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   └── app.py
 │   └── scan-results/
 │       └── node-14-detailed.json  # 3.8 MB Trivy scan output
 ├── 04-automation/
 │   └── scan-all.sh                # Automation script (work in progress)
-└── 05-findings/
-    ├── vulnerability-analysis.md  # Technical reference
-    └── remediation-guide.md       # Fix strategies
+└── 05-findings/                   # Reserved for future analysis
 ```
 
 ---
