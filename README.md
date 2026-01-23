@@ -261,11 +261,31 @@ opensource-sca-security-lab/
 
 ## Future Enhancements
 
-- [ ] Generate SBOMs in CycloneDX format using `trivy sbom`
+- [x] Generate SBOMs in CycloneDX format using `trivy sbom` ✅ **Completed Jan 23, 2026**
 - [ ] Automate scanning pipeline with GitHub Actions
-- [ ] Add CVSS vector strings to all top CVEs
-- [ ] Create risk prioritization matrix (Likelihood × Impact)
+- [x] Add CVSS vector strings to all top CVEs ✅ **Completed in FINDINGS.md**
+- [x] Create risk prioritization matrix (Likelihood × Impact) ✅ **Completed in FINDINGS.md**
 - [ ] Map vulnerabilities to OWASP Top 10 categories
+
+---
+
+## Generated SBOMs
+
+CycloneDX SBOMs generated for supply chain visibility:
+
+![Creating SBOM Directory](Screenshots/07-sbom-directory-creation.png)
+
+![CycloneDX SBOM Generation](Screenshots/08-cyclonedx-sbom-generation.png)
+
+| Image | SBOM File | Size | Components |
+|-------|-----------|------|------------|
+| node:14.17.0 | `03-sbom-generation/container-sboms/node-14-sbom.json` | 1.4 MB | Debian 9 + Node.js packages |
+| python:3.8.10 | `03-sbom-generation/container-sboms/python-3.8-sbom.json` | 888 KB | Debian 10 + Python packages |
+
+**Generation Command:**
+```bash
+trivy image --format cyclonedx --output sbom.json <image>
+```
 
 ---
 

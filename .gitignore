@@ -1,8 +1,11 @@
 # Scan results (generated)
 01-container-scanning/scan-results/
 02-dependency-scanning/scan-reports/
-03-sbom-generation/
+# 03-sbom-generation/ - Now tracked for portfolio evidence
 05-findings/metrics-summary.md
+
+# Personal planning
+NEXT_STEPS.md
 
 # Docker
 .dockerignore
