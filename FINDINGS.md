@@ -134,7 +134,9 @@ I investigated these CVEs in detail using the NIST National Vulnerability Databa
 #### 1. CVE-2022-1664 (dpkg) - **CRITICAL**
 - **Package:** dpkg 1.18.25
 - **Fixed In:** 1.18.26
-- **Attack Vector:** Debian package management system vulnerability
+- **CVSS Vector:** CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+- **CVSS Score:** 7.8 (HIGH)
+- **Attack Vector:** Debian package management system vulerability
 - **Description:** `Dpkg::Source::Archive` allows directory traversal, leading to arbitrary file writes during package extraction
 - **Real-World Impact:** An attacker could craft a malicious .deb package that overwrites system files during installation
 - **Why It's Critical:** dpkg is core to Debian—this affects package installation security
@@ -142,14 +144,17 @@ I investigated these CVEs in detail using the NIST National Vulnerability Databa
 #### 2. CVE-2022-25235 (libexpat1) - **CRITICAL**
 - **Package:** libexpat1 2.2.0-2+deb9u3
 - **Fixed In:** 2.2.0-2+deb9u5
+- **CVSS Vector:** CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+- **CVSS Score:** 9.8 (CRITICAL)
 - **Attack Vector:** Malformed UTF-8 sequences in XML
 - **Description:** 2- and 3-byte UTF-8 sequences can trigger arbitrary code execution in XML parser
 - **Real-World Impact:** Any application parsing untrusted XML (web services, config files) is vulnerable to RCE
-- **CVSS Score:** 9.8/10
 
 #### 3. CVE-2022-22822 (libexpat1) - **CRITICAL**
 - **Package:** libexpat1 2.2.0-2+deb9u3
 - **Fixed In:** 2.2.0-2+deb9u4
+- **CVSS Vector:** CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+- **CVSS Score:** 9.8 (CRITICAL)
 - **Description:** Integer overflow in `addBinding` function
 - **Why Expat Is Everywhere:** Used by Python, PHP, Apache, and hundreds of other tools for XML parsing
 - **Exploitation:** Attacker sends crafted XML → integer overflow → heap corruption → code execution
