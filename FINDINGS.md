@@ -174,6 +174,156 @@ I investigated these CVEs in detail using the NIST National Vulnerability Databa
 
 ---
 
+## Risk Prioritization Matrix
+
+Not all CRITICAL CVEs require immediate action. CVSS scores measure severity, but actual risk depends on exploitability, attack vector, and business context. Here's how I prioritized remediation for the top 5 CVEs:
+
+| CVE | CVSS | Attack Vector | Exploit Available? | Attack Complexity | Business Priority | Remediation Timeline |
+|-----|------|---------------|-------------------|-------------------|-------------------|---------------------|
+| **CVE-2022-25235** | 9.8 | NETWORK | ✅ POC on GitHub | **LOW** - Any XML input | **P0 (CRITICAL)** | 24 hours |
+| **CVE-2022-22822** | 9.8 | NETWORK | ✅ Public exploits | **LOW** - Any XML input | **P0 (CRITICAL)** | 24 hours |
+| **CVE-2022-1664** | 7.8 | LOCAL | ⚠️ Theoretical | **MEDIUM** - Requires malicious .deb | **P1 (HIGH)** | 1 week |
+| **CVE-2019-12900** | 9.8 | LOCAL | ✅ CVE-2019-12900 POC | **HIGH** - Needs .bz2 decompression | **P2 (MEDIUM)** | 30 days |
+| **CVE-2019-8457** | 9.8 | LOCAL | ⚠️ Theoretical | **HIGH** - Requires crafted DB file | **P2 (MEDIUM)** | 30 days |
+
+### Priority Level Definitions
+
+**P0 (CRITICAL) - Fix within 24 hours:**
+- Remote network exploitation possible (AV:N)
+- No authentication required (PR:N)
+- Public exploits or POCs available
+- Affects common attack surfaces (XML parsers, web servers)
+- **Business Impact:** Web applications parsing XML are immediately vulnerable to RCE
+
+**P1 (HIGH) - Fix within 1 week:**
+- Local attack vector or requires specific conditions
+- Medium attack complexity
+- Affects package management systems
+- **Business Impact:** Risk exists but requires attacker to deliver malicious files
+
+**P2 (MEDIUM) - Fix within 30 days:**
+- Local-only exploitation
+- High attack complexity or specific file types required
+- Theoretical exploits without widespread POCs
+- **Business Impact:** Low likelihood in typical container deployment scenarios
+
+### Exploitability Assessment
+
+#### Why CVE-2022-25235 & CVE-2022-22822 are P0 (Despite Same CVSS as Others)
+
+**libexpat1 (XML parser) vulnerabilities:**
+- ✅ **Network-exploitable:** Any web service accepting XML input is vulnerable
+- ✅ **No authentication required:** Attacker just sends crafted XML payload
+- ✅ **Public POCs exist:** Exploit code available on GitHub and security blogs
+- ✅ **Widespread usage:** Python, PHP, Apache httpd all use libexpat for XML parsing
+- ✅ **Real-world attack surface:** APIs, RSS feeds, SOAP services, config files
+
+**Attack Scenario:**
+```
+1. Web app accepts XML input (common in APIs, SOAP services)
+2. Attacker sends malformed UTF-8 sequence in XML payload
+3. libexpat parser triggers integer overflow
+4. Heap corruption leads to arbitrary code execution
+5. Attacker gains shell access to container
+```
+
+**Time to Exploit:** ~2 hours for skilled attacker with public POCs
+
+---
+
+#### Why CVE-2022-1664 is P1 (Not P0, Despite 7.8 CVSS)
+
+**dpkg (Debian package manager) vulnerability:**
+- ⚠️ **Local attack vector:** Requires attacker to deliver malicious .deb package
+- ⚠️ **Medium complexity:** Target must install the crafted package
+- ⚠️ **Limited in containers:** Production containers rarely install packages at runtime
+- ⚠️ **Theoretical exploits:** No widespread exploitation observed
+
+**Attack Scenario:**
+```
+1. Attacker crafts malicious .deb package with directory traversal
+2. Admin or automated system attempts to install package
+3. dpkg allows file write outside intended directory
+4. System files overwritten, leading to privilege escalation
+```
+
+**Why Lower Priority:**
+- Container immutability principle: packages installed at build time, not runtime
+- Supply chain controls: most orgs don't allow arbitrary .deb installation in production
+- Attack requires social engineering or compromised build process
+
+**Time to Exploit:** ~1 week (requires delivery mechanism + user interaction)
+
+---
+
+#### Why CVE-2019-12900 & CVE-2019-8457 are P2
+
+**bzip2 & libdb5.3 vulnerabilities:**
+- ⚠️ **Local attack vector:** Requires specific file types (.bz2, .db)
+- ⚠️ **High attack complexity:** Application must process attacker-controlled files
+- ⚠️ **Limited exposure:** Most web apps don't decompress .bz2 or parse SQLite files from untrusted sources
+- ⚠️ **Age without exploitation:** 5+ years old with minimal real-world attacks
+
+**Why Lower Priority:**
+- Specific file format requirements (not common in modern web apps)
+- Data integrity impact vs. direct RCE
+- EOL status means no patch available anyway (requires base image upgrade)
+
+---
+
+### Real-World Risk Calculation
+
+**Business Context: Node.js Microservice Deployment**
+
+| Component | Exposure | CVE Impact | True Priority |
+|-----------|----------|------------|---------------|
+| **API Gateway** (parses JSON/XML) | PUBLIC | CVE-2022-25235, CVE-2022-22822 | **P0** |
+| **File Upload Service** | INTERNAL | CVE-2019-12900 (bzip2) | **P2** |
+| **Package Manager** | BUILD-TIME | CVE-2022-1664 (dpkg) | **P1** |
+| **Database Layer** | INTERNAL | CVE-2019-8457 (libdb5.3) | **P2** |
+
+**Remediation Strategy:**
+1. **Immediate (P0):** Upgrade to Alpine-based images to eliminate libexpat1 vulnerabilities → Protects public-facing APIs
+2. **Short-term (P1):** Use multi-stage builds to exclude dpkg from final image → Reduces supply chain risk
+3. **Long-term (P2):** Plan migration from Debian 9 EOL to supported OS → Addresses all unfixable CVEs
+
+---
+
+### Key Takeaways: CVSS vs. Real Risk
+
+**What CVSS Tells You:**
+- Theoretical maximum impact (Confidentiality, Integrity, Availability)
+- Attack vector type (Network, Local, Adjacent, Physical)
+- Base severity score (0.0 - 10.0)
+
+**What CVSS Doesn't Tell You:**
+- ❌ Exploit availability (POC vs. Metasploit module vs. theoretical)
+- ❌ Attack surface in YOUR environment (web-facing vs. internal)
+- ❌ Likelihood of exploitation (common attack pattern vs. niche)
+- ❌ Business impact in YOUR context (public API vs. batch processor)
+
+**Professional Analysis Approach:**
+1. Start with CVSS as baseline severity
+2. Research exploit availability (ExploitDB, GitHub, Metasploit)
+3. Map to your attack surface (which components are exposed?)
+4. Assess attack complexity in your environment
+5. Prioritize based on: **Likelihood × Impact × Exploitability**
+
+**Formula:**
+```
+Risk Score = (CVSS Base Score) × (Exploit Availability Factor) × (Exposure Factor)
+
+Where:
+- Exploit Availability: 1.0 (theoretical) → 3.0 (weaponized Metasploit module)
+- Exposure Factor: 0.3 (internal) → 1.0 (public internet-facing)
+
+Example:
+CVE-2022-25235: 9.8 × 2.5 (public POC) × 1.0 (public API) = 24.5 (URGENT)
+CVE-2019-12900: 9.8 × 1.2 (old POC) × 0.4 (file upload only) = 4.7 (LOWER)
+```
+
+---
+
 ## What I Learned
 
 ### About libwebp Vulnerabilities
